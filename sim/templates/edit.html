@@ -67,8 +67,8 @@
 
       {{form.hidden_tag()}}
       <div class="form-group">
-         {{form.konfir_pass.label(class="form-control-label")}}
-         {% if form.konfir_pass.errors %}
+         {{form.konfir_pass.label(class="form-control-label")}}<!--tanda kurung ini berguna untuk menggunakan clas yang ada di css/bootstrap-->
+         {% if form.konfir_pass.errors %}<!--ini percabangan jika menemukan eror-->
          {{form.konfir_pass(class="form-control is-invalid")}}
          <div class="invalid-feedback">
          {% for error in form.konfir_pass.errors %}
@@ -76,16 +76,16 @@
          {% endfor %}
          </div>
 
-         {% else %}
-         {{form.konfir_pass(class="form-control")}}
+         {% else %}<!--ini else-->
+         {{form.konfir_pass(class="form-control")}}<!--ini juga sama kyak di atas-->
 
          {% endif %}</div>
       
       
       {{form.hidden_tag()}}
       <div class="form-group">
-            {{form.foto.label(class="form-control-label")}}
-            {% if form.foto.errors %}
+            {{form.foto.label(class="form-control-label")}}<!--tanda kurung ini berguna untuk menggunakan clas yang ada di css/bootstrap-->
+            {% if form.foto.errors %}<!--ini percabangan jika menemukan eror-->
             {{form.foto(class="form-control is-invalid")}}
             <div class="invalid-feedback">
             {% for error in form.foto.errors %}
@@ -93,8 +93,8 @@
             {% endfor %}
             </div>
    
-            {% else %}
-            {{form.foto(class="form-control")}}
+            {% else %}<!--ini else-->
+            {{form.foto(class="form-control")}}<!--ini juga sama kyak di atas-->
    
       {% endif %}</div>
          
@@ -113,4 +113,3 @@
 
 
 {% endblock %}
-

@@ -70,8 +70,3 @@ class pengaduan (FlaskForm):# semua yang di bawah ini menyesuiakan dengan yang a
     submit= SubmitField('laporkan')
 
 
-class edit_pengaduan (FlaskForm):# semua yang di bawah ini menyesuiakan dengan yang ada di Tpengaduan di file models.py kecuali id dan tgl_post
-    subjek= StringField('Subjek ',validators=[DataRequired()])
-    kategori = SelectField ( u'kategori pengaduan',choices=[('administrasi','pelayanan Administrasi'),('Fasilitas','Fasilitas'),('dosen','dosen')],validators=[DataRequired()])# 1 itu adalah nilai yang bakalan masuk ke database dan prlayanan itu bakalan ditampilkan di html nya
-    detail_pengaduan = TextAreaField("laporan",validators=[DataRequired()])
-    submit= SubmitField('Ubah')
