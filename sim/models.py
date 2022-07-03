@@ -30,3 +30,13 @@ class Tpengaduan(db.Model):
 
     def __repr__(self):
         return f"Tpengaduan('{self.subjek}', '{self.kategori}', {self.detail_pengaduan}', '{self.tgl_post}')"
+
+class Agenda_info(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    subjek =db.Column(db.String(100), nullable=False)
+    caption =db.Column(db.String(300), nullable=False)
+    tgl_post = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+   
+
+    def __repr__(self):
+        return f"Tpengaduan('{self.subjek}', '{self.caption}', , '{self.tgl_post}')"
