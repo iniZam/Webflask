@@ -102,8 +102,8 @@
       <td>{{data.detail_pengaduan}} </td>
       <!-- mahasiswa itu di dapat dari backref di models.py -->
       <td>{{data.mahasiswa.nama  }}</td>
-      <td>edit </td>
-      <td>hapus</td>
+      <th scope="col"><a  class="btn btn-outline-dark" href="{{url_for('rmahasiswa.edit_lapor',ed_id=data.id)}} ">edit</a></th>
+      <th scope="col"><a  class="btn btn-outline-danger" href="/delete/{{data.id}}" onclick="return confirm('ini mo hapus da?') ">hapus</a></th>
     </tr>
    {% endfor %}
   </tbody>
