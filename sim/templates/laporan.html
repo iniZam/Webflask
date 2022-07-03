@@ -61,23 +61,6 @@
                   {% endif %}
                </div>
 
-               <!-- konten -->
-               <div class="form-group">
-                  {{form.konten.label(class="form-control-label")}}
-                  {% if form.konten.errors %}
-                  {{form.konten(class="form-control is-invalid")}}
-                   <div class="invalid-feedback">
-                  {% for error in form.konten.errors %}
-                       <span>{{error}}</span>
-                  {% endfor %}
-                   </div>
-            
-                  {% else %}
-                  {{form.konten(class="form-control")}}
-               
-                    {% endif %}
-                 </div>
-               
            
                
                
@@ -95,8 +78,36 @@
          </form>
 
         <hr class="my-4">
-        <h4>Data Pelaporan</h4>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Lapor</a>
+        <h4>Data Pelaporan para cepu</h4>
+        <table class="table table-responsive">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Tanggal</th>
+      <th scope="col">Subjek</th>
+      <th scope="col">kategori</th>
+      <th scope="col">detail_laporan</th>
+      <th scope="col">id</th>
+      <th scope="col">edit</th>
+      <th scope="col">hapus</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for data in dt_pengaduan %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{data.tgl_post}} </td>
+      <td>{{data.kategori}} </td>
+      <td>{{data.subjek}} </td>
+      <td>{{data.detail_pengaduan}} </td>
+      <!-- mahasiswa itu di dapat dari backref di models.py -->
+      <td>{{data.mahasiswa.nama  }}</td>
+      <td>edit </td>
+      <td>hapus</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
       </div>
     
 </div>

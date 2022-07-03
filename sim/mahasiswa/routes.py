@@ -105,14 +105,14 @@ def simpan_foto(form_foto):
 @rmahasiswa.route("/laporan", methods=['GET','POST'])
 @login_required
 def laporan():
+    dt_pengaduan = Tpengaduan.query.filter_by(mahasiswa_id=current_user.id)
     form = pengaduan()
     if form.validate_on_submit():
-
-            add_laporan = Tpengaduan(subjek=form.subjek.data,kategori=form.kategori.data,detail_pengaduan=form.detail_pengaduan.data,mahasiswa=current_user,konten=form.konten.data)
-            db.session.add(add_laporan)
-            db.session.commit()
-            flash('laporan telah diterima ','warning ')
-
-            return redirect(url_for('rmahasiswa.rumah'))        
+        
+        add_laporan = Tpengaduan(subjek=form.subjek.data,kategori=form.kategori.data,detail_pengaduan=form.detail_pengaduan.data,mahasiswa=current_user)
+        db.session.add(add_laporan)
+        db.session.commit()
+        flash('laporan telah diterima ','warning ')
+        return redirect(url_for('rmahasiswa.rumah'))        
        
-    return render_template('laporan.html',form=form)
+    return render_template('laporan.html',form=form,dt_pengaduan=dt_pengaduan)
