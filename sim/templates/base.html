@@ -23,13 +23,16 @@
                 <a class="nav-link active" aria-current="page" href="{{url_for("rmahasiswa.rumah")}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for("rmahasiswa.tentang")}}">Tentang</a>
+                <a class="nav-link" href="{{url_for("rmahasiswa.informasi")}}">Informasi</a>
               </li>
               
+              {% if current_user.is_authenticated %}    
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for("rmahasiswa.agenda_inf")}}">Posting</a>
+              </li>   
+              {% else %}
               <li class="nav-item">
                   <a class="nav-link" href="{{url_for("rmahasiswa.daftar")}}">Daftar</a></li>
-              {% if current_user.is_authenticated %}       
-              {% else %}
               <!-- ini akan ditampilkan saaat tidak login -->
               <li class="nav-item">
                   <a class="nav-link" href="{{url_for("rmahasiswa.login")}}">Login</a></li>
