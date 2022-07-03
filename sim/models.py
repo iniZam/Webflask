@@ -15,7 +15,7 @@ class Tmahasiswa(db.Model,UserMixin): #tambahkan
     kelas = db.Column(db.String(20), nullable=False)
     alamat = db.Column(db.String(100), nullable=False)
     foto = db.Column(db.String(20), nullable=False, default='default.jpg')
-    pengaduans = db.relationship('Tpengaduan', backref='Tmahasiswa')
+    pengaduans = db.relationship('Tpengaduan', backref='mahasiswa')#backref berguna jika ada atribut dari Tmahaiswa mau aimbil maka backref yang dipanggil
 
     def __repr__(self):
         return f"Tmahasiswa('{self.npm}', '{self.nama}', '{self.email}', '{self.password}', '{self.kelas}', '{self.alamat}','{self.foto}')"
@@ -26,7 +26,7 @@ class Tpengaduan(db.Model):
     kategori =db.Column(db.String(100), nullable=False)
     detail_pengaduan =db.Column(db.String(100), nullable=False)
     tgl_post = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    konten = db.Column(db.Text, nullable=False)
+    konten = db.Column(db.Text, nullable=True)
     mahasiswa_id = db.Column (db.Integer, db.ForeignKey('tmahasiswa.id'), nullable=False)
 
     def __repr__(self):

@@ -3,7 +3,7 @@
 {% block konten %}
 <h1>Update Profil </h1>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
    <div class="container"><!--ini container ini berguna agar isi webnya di tengan -->
       <div class="jumbotron"><!--jumbroton ini akan di edit fi file style.css yang ada di dalam forder static dan di dalam folder css-->
          
@@ -82,6 +82,22 @@
          {% endif %}</div>
       
       
+      {{form.hidden_tag()}}
+      <div class="form-group">
+            {{form.foto.label(class="form-control-label")}}<!--tanda kurung ini berguna untuk menggunakan clas yang ada di css/bootstrap-->
+            {% if form.foto.errors %}<!--ini percabangan jika menemukan eror-->
+            {{form.foto(class="form-control is-invalid")}}
+            <div class="invalid-feedback">
+            {% for error in form.foto.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+            </div>
+   
+            {% else %}<!--ini else-->
+            {{form.foto(class="form-control")}}<!--ini juga sama kyak di atas-->
+   
+      {% endif %}</div>
+         
 
    <div class="form-group">
       

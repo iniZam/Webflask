@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block konten %}
+
+<div class="container"><!--ini container ini berguna agar isi webnya di tengan -->
+    <div class="jumbotron"><!--jumbroton ini akan di edit fi file style.css yang ada di dalam forder static dan di dalam folder css-->
+        
+        <h3>Pelaporan</h3>
+        <!-- form pelaporan ini sama saja dengan daftar.html tapi tentu saja di modif -->
+        <form method="POST">
+            <div class="container"><!--ini container ini berguna agar isi webnya di tengan -->
+               <div class="jumbotron"><!--jumbroton ini akan di edit fi file style.css yang ada di dalam forder static dan di dalam folder css-->
+                  
+                  {{form.hidden_tag()}}
+                  <div class="form-group">
+                     {{form.subjek.label(class="form-control-label")}}<!--tanda kurung ini berguna untuk menggunakan clas yang ada di css/bootstrap-->
+                     {% if form.subjek.errors %}<!--ini percabangan jika menemukan eror-->
+                  {{form.subjek(class="form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                     {% for error in form.subjek.errors %}
+                     <span>{{error}}</span>
+                     {% endfor %}
+                  </div>
+               
+                  {% else %}<!--ini else-->
+                  {{form.subjek(class="form-control")}}<!--ini juga sama kyak di atas-->
+                  
+               {% endif %}</div>
+
+               <!-- kategori ini tampilannya sama dengan tag select dan option di html-->
+               <div class="form-group">
+                {{form.kategori.label(class="form-control-label")}}
+                {% if form.kategori.errors %}
+                {{form.kategori(class="form-control is-invalid")}}
+                 <div class="invalid-feedback">
+                {% for error in form.kategori.errors %}
+                     <span>{{error}}</span>
+                {% endfor %}
+                 </div>
+          
+                {% else %}
+                {{form.kategori(class="form-control")}}
+             
+                  {% endif %}
+               </div>
+
+               <!-- detail pengaduan -->
+               <div class="form-group">
+                {{form.detail_pengaduan.label(class="form-control-label")}}<!--tanda kurung ini berguna untuk menggunakan clas yang ada di css/bootstrap-->
+                {% if form.detail_pengaduan.errors %}<!--ini percabangan jika menemukan eror-->
+                {{form.detail_pengaduan(class="form-control is-invalid")}}
+                 <div class="invalid-feedback">
+                {% for error in form.detail_pengaduan.errors %}
+                     <span>{{error}}</span>
+                {% endfor %}
+                 </div>
+          
+                {% else %}
+                {{form.detail_pengaduan(class="form-control")}}
+             
+                  {% endif %}
+               </div>
+
+               <!-- konten -->
+               <div class="form-group">
+                  {{form.konten.label(class="form-control-label")}}
+                  {% if form.konten.errors %}
+                  {{form.konten(class="form-control is-invalid")}}
+                   <div class="invalid-feedback">
+                  {% for error in form.konten.errors %}
+                       <span>{{error}}</span>
+                  {% endfor %}
+                   </div>
+            
+                  {% else %}
+                  {{form.konten(class="form-control")}}
+               
+                    {% endif %}
+                 </div>
+               
+           
+               
+               
+         
+            <div class="form-group">
+               
+               {{form.submit(class="btn btn-primary")}}<!--ini juga sama kyak di atas-->
+            </div>
+           
+            
+         
+            </div>
+         </div>
+         
+         </form>
+
+        <hr class="my-4">
+        <h4>Data Pelaporan</h4>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Lapor</a>
+      </div>
+    
+</div>
+
+{% endblock %}
