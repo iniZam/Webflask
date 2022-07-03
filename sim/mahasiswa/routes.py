@@ -1,6 +1,7 @@
 from email.mime import image
+from tkinter.tix import Form
 from flask import Flask, render_template, redirect, request, url_for, Blueprint, flash
-from sim.mahasiswa.forms import Orang,login_org,Edit_org,pengaduan
+from sim.mahasiswa.forms import Orang,login_org,Edit_org,pengaduan,edit_pengaduan
 from sim.models import Tmahasiswa, Tpengaduan
 from sim import db, bcrypt,app
 from flask_login import login_user,current_user,logout_user,login_required
@@ -107,12 +108,40 @@ def simpan_foto(form_foto):
 def laporan():
     dt_pengaduan = Tpengaduan.query.filter_by(mahasiswa_id=current_user.id)
     form = pengaduan()
-    if form.validate_on_submit():
-        
+    if form.validate_on_submit(): 
         add_laporan = Tpengaduan(subjek=form.subjek.data,kategori=form.kategori.data,detail_pengaduan=form.detail_pengaduan.data,mahasiswa=current_user)
         db.session.add(add_laporan)
         db.session.commit()
         flash('laporan telah diterima ','warning ')
-        return redirect(url_for('rmahasiswa.rumah'))        
+        return redirect(url_for('rmahasiswa.laporan'))        
        
     return render_template('laporan.html',form=form,dt_pengaduan=dt_pengaduan)
+
+
+@rmahasiswa.route("/editlaporan/<int:ed_id>/update", methods=['GET','POST'])
+@login_required # ini akan membuat halamanya hanya bisa dibuka saat user sudah login
+def edit_lapor(ed_id):# ed_id adalah id yang ada di database dan data yang di edit akan berdasarkan id nya
+    form = edit_pengaduan()
+    dt_pengaduan=Tpengaduan.query.get_or_404(ed_id)
+    if request.method=="GET":# ini adalah sytak untuk menampilkan data 
+        form.subjek.data=dt_pengaduan.subjek
+        form.kategori.data=dt_pengaduan.kategori
+        form.detail_pengaduan.data=dt_pengaduan.detail_pengaduan
+    elif form.validate_on_submit():# ini sytak untuk mengubah data di dalam database
+        dt_pengaduan.subjek=form.subjek.data
+        dt_pengaduan.kategori=form.kategori.data
+        dt_pengaduan.detail_pengaduan=form.detail_pengaduan.data
+        db.session.commit()
+        flash('Laporan telah direvisi :)','warning')
+        return redirect(url_for('rmahasiswa.laporan'))
+    return render_template('editlapor.html',form=form)
+
+@rmahasiswa.route("/delete/<id>", methods=['GET','POST'])
+@login_required # ini akan membuat halamanya hanya bisa dibuka saat user sudah login
+def cabut_lapor(id):
+    hapus =Tpengaduan.query.get(id)
+    db.session.delete(hapus)
+    db.session.commit()
+    flash('Laporan telah sudah dicabut :)','warning')
+    return redirect(url_for('rmahasiswa.laporan'))
+    
