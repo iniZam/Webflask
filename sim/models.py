@@ -15,7 +15,7 @@ class Tmahasiswa(db.Model,UserMixin): #tambahkan
     kelas = db.Column(db.String(20), nullable=False)
     alamat = db.Column(db.String(100), nullable=False)
     foto = db.Column(db.String(20), nullable=False, default='default.jpg')
-    pengaduans = db.relationship('Tpengaduan', backref='mahasiswa')#backref itu relasi/hubungan antar ttabel
+    pengaduans = db.relationship('Tpengaduan', backref='Tmahasiswa')
 
     def __repr__(self):
         return f"Tmahasiswa('{self.npm}', '{self.nama}', '{self.email}', '{self.password}', '{self.kelas}', '{self.alamat}','{self.foto}')"
@@ -26,17 +26,8 @@ class Tpengaduan(db.Model):
     kategori =db.Column(db.String(100), nullable=False)
     detail_pengaduan =db.Column(db.String(100), nullable=False)
     tgl_post = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    konten = db.Column(db.Text, nullable=False)
     mahasiswa_id = db.Column (db.Integer, db.ForeignKey('tmahasiswa.id'), nullable=False)
 
     def __repr__(self):
         return f"Tpengaduan('{self.subjek}', '{self.kategori}', {self.detail_pengaduan}', '{self.tgl_post}')"
-
-class Agenda_info(db.Model):
-    id= db.Column(db.Integer, primary_key=True)
-    subjek =db.Column(db.String(100), nullable=False)
-    caption =db.Column(db.String(300), nullable=False)
-    tgl_post = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-   
-
-    def __repr__(self):
-        return f"Tpengaduan('{self.subjek}', '{self.caption}', {self.foto}', '{self.tgl_post}')"

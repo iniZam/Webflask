@@ -23,18 +23,13 @@
                 <a class="nav-link active" aria-current="page" href="{{url_for("rmahasiswa.rumah")}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for("rmahasiswa.informasi")}}">Informasi</a>
+                <a class="nav-link" href="{{url_for("rmahasiswa.tentang")}}">Tentang</a>
               </li>
-
-
               
-              {% if current_user.is_authenticated %}       
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for("rmahasiswa.agenda_inf")}}">Posting</a>
-              </li>
-              {% else %}
               <li class="nav-item">
                   <a class="nav-link" href="{{url_for("rmahasiswa.daftar")}}">Daftar</a></li>
+              {% if current_user.is_authenticated %}       
+              {% else %}
               <!-- ini akan ditampilkan saaat tidak login -->
               <li class="nav-item">
                   <a class="nav-link" href="{{url_for("rmahasiswa.login")}}">Login</a></li>
@@ -90,15 +85,14 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a href="{{url_for('rmahasiswa.akun')}}">dashboard</a> </li>
               <li class="list-group-item">Ed</li>
-              <li class="list-group-item">
-                <a href="{{url_for('rmahasiswa.laporan')}}">lapor</a>
-              </li>
+              <li class="list-group-item">A third item</li>
             </ul>
             <div class="card-body">
               <a href="{{url_for('rmahasiswa.edit')}}" class="card-link">Update Profil</a>
               <a href="{{url_for('rmahasiswa.keluar')}}" class="card-link">Keluar</a>
             </div>
           </div>
+          
           {% else %}
           
           <h1>Menu Lain</h1>         
